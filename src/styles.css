@@ -1,0 +1,159 @@
+@layer reset, theme, base, components, utilities;
+@import "tailwindcss" source(none);
+@source "../src";
+@source "../packages/app-landing/src";
+@source "../packages/quanta/src";
+@import "@higgsfield/quanta/tailwind.css";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+:root {
+  --ink: #08090A;
+  --surface: #101112;
+  --raised: #17191A;
+  --line: rgba(255,255,255,.16);
+  --ivory: #FFFFFF;
+  --muted: #B4B6B8;
+  --orange: #F26B2D;
+  --orange-soft: #FF8A4C;
+  --radius: 14px;
+}
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; background: var(--ink); color: var(--ivory); color-scheme: dark; }
+  body { margin: 0; min-width: 320px; background: var(--ink); color: var(--ivory); font-family: "Space Grotesk", Arial, sans-serif; font-weight: 600; }
+  a { color: inherit; text-decoration: none; }
+  button, input, select { font: inherit; }
+}
+
+.apex-site { overflow: hidden; background: var(--ink); }
+.site-nav { height: 76px; padding: 0 5vw; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); position: relative; z-index: 5; background: rgba(13,17,23,.9); backdrop-filter: blur(16px); }
+.wordmark { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; letter-spacing: .18em; font-weight: 700; white-space: nowrap; }
+.wordmark-mark { display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid var(--orange); color: var(--orange); font-family: "Space Grotesk", Arial, sans-serif; font-size: 17px; letter-spacing: 0; transform: rotate(45deg); }
+.bull-mark { width: 23px; height: 15px; fill: currentColor; transform: rotate(-45deg); }
+.wordmark-mark::first-letter { transform: rotate(-45deg); }
+.nav-links { display: flex; gap: 30px; color: var(--muted); font-size: 12px; }
+.nav-links a { transition: color .25s ease; }
+.nav-links a:hover, .text-link:hover, .line-link:hover { color: var(--orange-soft); }
+.nav-cta, .outline-button, .dark-button, .orange-button { border: 1px solid var(--orange); border-radius: 999px; padding: 12px 17px; font-size: 11px; letter-spacing: .04em; font-weight: 700; transition: transform .25s ease, background .25s ease, color .25s ease; display: inline-flex; align-items: center; gap: 12px; white-space: nowrap; }
+.nav-cta { color: var(--orange-soft); padding: 10px 14px; }
+.nav-cta:hover, .outline-button:hover { background: var(--orange); color: var(--ink); transform: translateY(-2px); }
+.orange-button { background: var(--orange); color: var(--ink); padding: 16px 20px; }
+.orange-button:hover { background: var(--orange-soft); transform: translateY(-2px); }
+.hero-section { min-height: calc(100dvh - 76px); display: grid; grid-template-columns: minmax(340px, .82fr) minmax(0, 1.38fr); align-items: stretch; position: relative; }
+.hero-copy { padding: 12vh 5vw 9vh; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 2; background: linear-gradient(90deg, var(--ink) 74%, rgba(13,17,23,.05)); }
+.eyebrow { color: var(--orange); font-size: 10px; letter-spacing: .22em; font-weight: 700; margin: 0 0 24px; }
+h1, h2, h3, p { margin-top: 0; }
+h1, h2 { font-family: "Space Grotesk", Arial, sans-serif; font-weight: 700; letter-spacing: -.055em; }
+h1 { font-size: clamp(58px, 7.7vw, 118px); line-height: .88; margin-bottom: 28px; animation: rise-in .8s cubic-bezier(.16,1,.3,1) both; }
+h1 em, h2 span { color: var(--orange-soft); font-style: italic; }
+.hero-intro { max-width: 360px; color: var(--muted); font-size: 16px; line-height: 1.6; margin-bottom: 34px; animation: rise-in .8s .1s cubic-bezier(.16,1,.3,1) both; }
+.hero-actions { display: flex; align-items: center; gap: 22px; animation: rise-in .8s .18s cubic-bezier(.16,1,.3,1) both; }
+.text-link, .line-link { color: var(--ivory); font-size: 12px; border-bottom: 1px solid var(--line); padding-bottom: 7px; transition: color .25s ease, border-color .25s ease; }
+.text-link span, .line-link span { color: var(--orange); margin-left: 8px; }
+.hero-image { min-height: 680px; background: linear-gradient(90deg, var(--ink), transparent 24%), linear-gradient(0deg, rgba(13,17,23,.32), transparent 45%), url('/assets/apex/hero-gym.png') center / cover; position: relative; animation: image-in 1.2s cubic-bezier(.16,1,.3,1) both; }
+.hero-image::after { content: ""; position: absolute; inset: 7%; border: 1px solid rgba(255,255,255,.22); pointer-events: none; }
+.hero-image-caption { position: absolute; right: 7%; bottom: 8%; color: var(--ivory); font-size: 9px; letter-spacing: .18em; line-height: 1.8; text-align: right; }
+.hero-index { position: absolute; left: 5vw; bottom: 30px; color: var(--muted); font-size: 10px; letter-spacing: .18em; z-index: 2; }
+.hero-index span { color: var(--orange); padding: 0 6px; }
+.proof-rail { min-height: 104px; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 0 5vw; }
+.proof-rail div { display: flex; flex-direction: column; justify-content: center; gap: 8px; border-right: 1px solid var(--line); padding-left: 24px; }
+.proof-rail div:first-child { padding-left: 0; }
+.proof-rail div:last-child { border-right: 0; }
+.proof-rail strong { color: var(--orange); font-family: "Space Grotesk", Arial, sans-serif; font-size: 24px; font-weight: 400; }
+.proof-rail span { color: var(--muted); font-size: 11px; }
+.section-pad { padding: 150px 5vw; }
+.section-heading h2 { font-size: clamp(46px, 6vw, 84px); line-height: .96; margin-bottom: 30px; }
+.section-note { color: var(--muted); max-width: 370px; line-height: 1.6; font-size: 14px; }
+.club-section { background: var(--surface); }
+.club-grid { display: grid; grid-template-columns: 1.05fr .8fr 1.4fr; gap: 7vw; align-items: end; margin-top: 50px; }
+.club-lead p { color: var(--ivory); font-family: "Space Grotesk", Arial, sans-serif; font-size: clamp(22px, 2.4vw, 34px); line-height: 1.15; letter-spacing: -.03em; }
+.club-body { color: var(--muted); font-size: 14px; line-height: 1.75; }
+.club-body p + p { margin-top: 20px; }
+.club-image { min-height: 420px; background: linear-gradient(0deg, rgba(13,17,23,.28), transparent), url('/assets/apex/training-room.png') center / cover; border-radius: var(--radius); }
+.membership-section { background: var(--ink); }
+.plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 60px; }
+.plan-card { min-height: 470px; border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; background: var(--surface); transition: transform .3s ease, border-color .3s ease; }
+.plan-card:hover { transform: translateY(-7px); border-color: rgba(242,107,45,.72); }
+.plan-featured { background: var(--orange); color: var(--ink); border-color: var(--orange); }
+.plan-top { display: flex; justify-content: space-between; align-items: start; gap: 12px; }
+.plan-name { font-family: "Space Grotesk", Arial, sans-serif; font-size: 32px; margin-bottom: 8px; }
+.plan-badge { color: var(--ink); border: 1px solid rgba(13,17,23,.35); border-radius: 999px; padding: 6px 8px; text-transform: uppercase; font-size: 8px; letter-spacing: .14em; white-space: nowrap; }
+.plan-note { color: var(--muted); font-size: 12px; min-height: 34px; }
+.plan-featured .plan-note, .plan-featured li, .plan-featured li span { color: rgba(13,17,23,.75); }
+.plan-price { font-family: "Space Grotesk", Arial, sans-serif; font-size: 42px; margin: 32px 0; }
+.plan-price small { font-family: "Space Grotesk", Arial, sans-serif; color: var(--muted); font-size: 11px; margin-left: 7px; }
+.plan-featured .plan-price small { color: rgba(13,17,23,.7); }
+.plan-card ul { padding: 0; margin: 0 0 32px; list-style: none; display: grid; gap: 14px; color: var(--muted); font-size: 12px; }
+.plan-card li { display: flex; gap: 10px; align-items: baseline; }
+.plan-card li span { color: var(--orange); }
+.plan-card .outline-button, .plan-card .dark-button { margin-top: auto; justify-content: center; }
+.outline-button { color: var(--orange-soft); }
+.dark-button { background: var(--ink); color: var(--ivory); border-color: var(--ink); }
+.coaches-section { background: var(--surface); }
+.coach-list { margin-top: 54px; border-top: 1px solid var(--line); }
+.coach-row { display: grid; grid-template-columns: 50px 78px 1.25fr 1.7fr 44px; gap: 22px; align-items: center; min-height: 128px; border-bottom: 1px solid var(--line); }
+.coach-number { color: var(--orange); font-family: "Space Grotesk", Arial, sans-serif; font-size: 15px; }
+.coach-initial { width: 58px; height: 58px; border-radius: 50%; border: 1px solid var(--orange); color: var(--orange-soft); display: grid; place-items: center; font-family: "Space Grotesk", Arial, sans-serif; font-size: 14px; letter-spacing: .08em; }
+.coach-name h3 { font-family: "Space Grotesk", Arial, sans-serif; font-size: 22px; font-weight: 400; margin-bottom: 7px; }
+.coach-name p, .coach-detail { color: var(--muted); font-size: 12px; margin-bottom: 0; }
+.coach-detail { line-height: 1.6; max-width: 340px; }
+.round-arrow { border: 1px solid var(--line); width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; color: var(--orange); transition: background .25s ease, color .25s ease; }
+.round-arrow:hover { background: var(--orange); color: var(--ink); }
+.facilities-section { background: var(--ink); }
+.facility-grid { display: grid; grid-template-columns: 1.35fr .85fr; grid-auto-rows: 260px; gap: 14px; margin-top: 54px; }
+.facility-card { position: relative; overflow: hidden; border-radius: var(--radius); background-position: center; background-size: cover; }
+.facility-main { grid-row: span 2; background-image: linear-gradient(0deg, rgba(13,17,23,.85), transparent 60%), url('/assets/apex/hero-gym.png'); }
+.facility-coach { background-image: linear-gradient(0deg, rgba(13,17,23,.88), transparent 65%), url('/assets/apex/training-room.png'); }
+.facility-recovery { background-image: linear-gradient(0deg, rgba(13,17,23,.88), transparent 65%), url('/assets/apex/hero-gym.png'); background-position: 70% center; }
+.facility-mind { grid-column: span 2; height: 220px; background-image: linear-gradient(0deg, rgba(13,17,23,.9), transparent 65%), url('/assets/apex/training-room.png'); background-position: center 70%; }
+.facility-overlay { position: absolute; inset: auto 24px 22px; }
+.facility-overlay span { color: var(--orange); font-size: 10px; letter-spacing: .16em; }
+.facility-overlay h3 { font-family: "Space Grotesk", Arial, sans-serif; font-size: 30px; font-weight: 400; margin: 8px 0; }
+.facility-overlay p { color: var(--ivory); font-size: 12px; line-height: 1.5; max-width: 320px; margin-bottom: 0; }
+.contact-section { display: grid; grid-template-columns: 1fr .82fr; gap: 12vw; background: var(--surface); }
+.contact-copy h2 { margin-bottom: 24px; }
+.contact-copy > p:not(.eyebrow) { color: var(--muted); max-width: 330px; line-height: 1.65; font-size: 14px; }
+.contact-details { display: grid; gap: 9px; margin-top: 40px; color: var(--orange-soft); font-size: 13px; }
+.contact-details span { color: var(--muted); }
+.contact-form { display: grid; gap: 22px; align-content: start; padding-top: 8px; }
+.contact-form label { display: grid; gap: 9px; color: var(--muted); font-size: 11px; letter-spacing: .05em; }
+.contact-form input, .contact-form select { background: transparent; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; color: var(--ivory); outline: 0; padding: 11px 0; min-height: 42px; }
+.contact-form input:focus, .contact-form select:focus { border-color: var(--orange); box-shadow: 0 1px 0 var(--orange); }
+.contact-form select option { background: var(--surface); }
+.contact-form .orange-button { border: 0; justify-content: center; cursor: pointer; margin-top: 8px; }
+.form-note { color: var(--muted); font-size: 11px; margin: -8px 0 0; }
+.site-footer { border-top: 1px solid var(--line); padding: 34px 5vw; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.site-footer p, .back-top { color: var(--muted); font-size: 11px; margin: 0; }
+.back-top { color: var(--orange-soft); }
+@keyframes rise-in { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes image-in { from { opacity: 0; transform: scale(1.04); } to { opacity: 1; transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+@media (max-width: 800px) {
+  .site-nav { padding: 0 20px; height: 68px; }
+  .nav-links { display: none; }
+  .nav-cta { padding: 9px 11px; font-size: 10px; }
+  .hero-section { display: flex; flex-direction: column; min-height: auto; }
+  .hero-copy { padding: 86px 20px 56px; background: var(--ink); }
+  .hero-image { min-height: 54vh; order: 2; }
+  .hero-image::after { inset: 5%; }
+  .hero-index { left: 20px; bottom: 22px; }
+  .proof-rail { grid-template-columns: repeat(2, 1fr); padding: 0 20px; }
+  .proof-rail div { min-height: 82px; padding-left: 14px; border-bottom: 1px solid var(--line); }
+  .proof-rail div:nth-child(2) { border-right: 0; }
+  .section-pad { padding: 90px 20px; }
+  .club-grid, .contact-section { grid-template-columns: 1fr; gap: 38px; }
+  .club-grid { margin-top: 25px; }
+  .club-image { min-height: 330px; }
+  .plan-grid { grid-template-columns: 1fr; margin-top: 35px; }
+  .plan-card { min-height: 410px; }
+  .coach-row { grid-template-columns: 32px 58px 1fr 38px; gap: 12px; min-height: 112px; }
+  .coach-detail { display: none; }
+  .coach-name h3 { font-size: 17px; }
+  .coach-name p { font-size: 10px; line-height: 1.35; }
+  .facility-grid { grid-template-columns: 1fr; grid-auto-rows: 250px; }
+  .facility-main { grid-row: auto; }
+  .facility-mind { grid-column: auto; height: 250px; }
+  .site-footer { padding: 28px 20px; align-items: flex-start; flex-direction: column; }
+}
